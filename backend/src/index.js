@@ -16,14 +16,16 @@ dotenv.config();
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
-app.use(express.json());
-app.use(cookieParser());
+
 app.use(
   cors({
     origin: "https://gentle-forest-0b7e26f10.7.azurestaticapps.net",
     credentials: true,
   })
 );
+
+app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
