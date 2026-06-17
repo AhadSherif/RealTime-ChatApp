@@ -8,6 +8,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: ["https://gentle-forest-0b7e26f10.7.azurestaticapps.net"],
+    credentials: true,
   },
 });
 
