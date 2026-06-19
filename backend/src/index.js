@@ -17,12 +17,25 @@ const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
 
-app.use(
-  cors({
-    origin: "https://gentle-forest-0b7e26f10.7.azurestaticapps.net",
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: "https://gentle-forest-0b7e26f10.7.azurestaticapps.net",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+// Handle preflight requests for ALL routes
+app.options("*", cors(corsOptions));
+
+// Apply CORS to all routes
+app.use(cors(corsOptions));
+
+// app.use(
+//   cors({
+//     origin: "https://gentle-forest-0b7e26f10.7.azurestaticapps.net",
+//     credentials: true,
+//   })
+// );
 
 app.use(express.json());
 app.use(cookieParser());
